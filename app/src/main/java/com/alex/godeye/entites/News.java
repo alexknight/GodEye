@@ -19,6 +19,8 @@ public class News {
     private String img;
     private String style;
 
+    public News(){}
+
     public News(String title, String score, String style){
         this.title = title;
         this.score = score;
@@ -56,11 +58,12 @@ public class News {
         this.style = style;
     }
 
-    public Bitmap getImg() {
-        return RssUtil.getHttpBitmap(img);
+    public String getImg() {
+        return img;
     }
 
     public void setImg(String img) {
         this.img = img;
     }
+
 }

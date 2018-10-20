@@ -5,14 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Window;
-import android.view.WindowManager;
+
 
 import com.alex.godeye.fragments.DoubanFragment;
 import com.alex.godeye.fragments.TestFragment;
+import com.alex.godeye.pkrss.PkRSS;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TabLayout tablayout;
     private ViewPager viewPager;
 
-    private String[] titles = {"豆瓣电影", "简书周报", "开发者头条", "知乎日报", "美女", "正经新闻",};
+    private String[] titles = {"豆瓣电影", "知乎日报", "简书周报", "开发者头条", "知乎日报", "草榴", "美女", "正经新闻",};
 
 
     @Override
@@ -57,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (titles[position]){
                 case "豆瓣电影":
+                    PkRSS.with(getApplicationContext()).load("https://rsshub.app/douban/movie/playing").async();
                     return new DoubanFragment();
                 default:
                     TestFragment testFragment = new TestFragment();
