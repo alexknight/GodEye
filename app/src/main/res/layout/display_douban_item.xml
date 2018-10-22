@@ -30,7 +30,7 @@
     <TextView
         android:id="@+id/titleTv"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="26dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:singleLine="true"
@@ -41,8 +41,7 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent"
-        tools:targetApi="lollipop"
-        android:layout_marginLeft="24dp" />
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/scoreTv"
@@ -59,20 +58,18 @@
         app:layout_constraintBottom_toTopOf="@+id/styleTv"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/titleTv"
-        app:layout_constraintVertical_bias="0.577"
-        android:layout_marginLeft="24dp" />
+        app:layout_constraintVertical_bias="0.25" />
 
 
     <TextView
         android:id="@+id/styleTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginStart="24dp"
         android:text="影片类型：悬疑 | 惊悚 | 恐怖"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        android:layout_marginLeft="24dp" />
+        app:layout_constraintStart_toStartOf="@+id/guideline" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -101,7 +98,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="140dp" />
+        app:layout_constraintGuide_begin="122dp" />
 
 
 </android.support.constraint.ConstraintLayout>

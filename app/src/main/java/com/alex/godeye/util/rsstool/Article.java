@@ -1,4 +1,4 @@
-package com.alex.godeye.pkrss;
+package com.alex.godeye.util.rsstool;
 
 import android.net.Uri;
 import android.os.Bundle;

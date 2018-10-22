@@ -34,17 +34,11 @@ public class TestFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        TextView textView = new TextView(getContext());
-//        textView.setTextColor(Color.BLACK);
-//        String name = this.getArguments().getString("title");
-//        textView.setBackgroundColor(Color.rgb((int) (Math.random() * 255), (int) (Math.random() * 255), (int) (Math.random() * 255)));
-//        textView.setText(name);
 
         View view = inflater.inflate(R.layout.test_fragment, container, false);
         webView = view.findViewById(R.id.wv);
         initView();
         webView.loadUrl("http://www.baidu.com");
-        //web_view.loadUrl("file:///android_asset/Demo.html");
         webView.setWebViewClient(new WebViewClient());
 
         webView.setWebChromeClient(new WebChromeClient(){

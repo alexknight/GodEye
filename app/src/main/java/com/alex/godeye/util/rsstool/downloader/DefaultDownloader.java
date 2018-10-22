@@ -1,4 +1,4 @@
-package com.alex.godeye.pkrss.downloader;
+package com.alex.godeye.util.rsstool.downloader;
 
 import android.content.Context;
 import android.net.Uri;
@@ -6,8 +6,8 @@ import android.net.http.HttpResponseCache;
 import android.util.Log;
 
 
-import com.alex.godeye.pkrss.Request;
-import com.alex.godeye.pkrss.Utils;
+import com.alex.godeye.util.rsstool.Request;
+import com.alex.godeye.util.Utils;
 
 import java.io.BufferedInputStream;
 import java.io.File;

@@ -1,10 +1,10 @@
-package com.alex.godeye.pkrss;
+package com.alex.godeye.util.rsstool;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.alex.godeye.pkrss.downloader.Downloader;
-import com.alex.godeye.pkrss.parser.Parser;
+import com.alex.godeye.util.rsstool.downloader.Downloader;
+import com.alex.godeye.util.rsstool.parser.Parser;
 
 import java.io.IOException;
 import java.util.List;
@@ -114,11 +114,11 @@ public class RequestCreator {
 	}
 
 	/**
-	 * Adds a callback listener to this request.
-	 * @param callback Callback interface to respond to.
+	 * Adds a rssCallback listener to this request.
+	 * @param rssCallback RssCallback interface to respond to.
 	 */
-	public RequestCreator callback(Callback callback) {
-		this.data.callback(callback);
+	public RequestCreator callback(RssCallback rssCallback) {
+		this.data.callback(rssCallback);
 		return this;
 	}
 
@@ -158,10 +158,19 @@ public class RequestCreator {
 	/**
 	 * Executes request asynchronously.
 	 * <p>
-	 * Be sure to add a callback to handle this.
+	 * Be sure to add a rssCallback to handle this.
 	 */
 	public void async() {
 		final Request request = data.build();
+//		try {
+//			singleton.load(request);
+//		} catch (IOException e) {
+//			singleton.log("Error executing request " + request.tag + " asynchronously! " + e.getMessage(), Log.ERROR);
+//			if(request.rssCallback != null)
+//				request.rssCallback.OnLoadFailed();
+//		}
+
+
 
 		new AsyncTask<Void, Void, Void>() {
 			@Override
@@ -170,8 +179,8 @@ public class RequestCreator {
 					singleton.load(request);
 				} catch (IOException e) {
 					singleton.log("Error executing request " + request.tag + " asynchronously! " + e.getMessage(), Log.ERROR);
-					if(request.callback != null)
-						request.callback.OnLoadFailed();
+					if(request.rssCallback != null)
+						request.rssCallback.OnLoadFailed();
 				}
 				return null;
 			}

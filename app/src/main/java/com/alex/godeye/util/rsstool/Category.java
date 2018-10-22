@@ -1,4 +1,4 @@
-package com.alex.godeye.pkrss;
+package com.alex.godeye.util.rsstool;
 
 import android.os.Parcel;
 import android.os.Parcelable;

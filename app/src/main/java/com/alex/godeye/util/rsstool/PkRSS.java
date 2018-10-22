@@ -1,4 +1,4 @@
-package com.alex.godeye.pkrss;
+package com.alex.godeye.util.rsstool;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,11 +7,12 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 
-import com.alex.godeye.pkrss.downloader.DefaultDownloader;
-import com.alex.godeye.pkrss.downloader.Downloader;
-import com.alex.godeye.pkrss.downloader.OkHttpDownloader;
-import com.alex.godeye.pkrss.parser.Parser;
-import com.alex.godeye.pkrss.parser.Rss2Parser;
+import com.alex.godeye.util.Utils;
+import com.alex.godeye.util.rsstool.downloader.DefaultDownloader;
+import com.alex.godeye.util.rsstool.downloader.Downloader;
+import com.alex.godeye.util.rsstool.downloader.OkHttpDownloader;
+import com.alex.godeye.util.rsstool.parser.Parser;
+import com.alex.godeye.util.rsstool.parser.Rss2Parser;
 
 
 import java.io.IOException;
@@ -148,9 +149,9 @@ public class PkRSS {
 			return;
 		}
 
-		// Call the callback, if available
-		if(request.callback != null)
-			request.callback.OnPreLoad();
+		// Call the rssCallback, if available
+		if(request.rssCallback != null)
+			request.rssCallback.OnPreLoad();
 
 		// Create safe url for pagination/indexing purposes
 		String safeUrl = downloader.toSafeUrl(request);
@@ -165,9 +166,9 @@ public class PkRSS {
 		List<Article> newArticles = request.parser == null ? parser.parse(response) : request.parser.parse(response);
 		insert(safeUrl, newArticles);
 
-		// Call the callback, if available
-		if(request.callback != null)
-			request.callback.OnLoaded(newArticles);
+		// Call the rssCallback, if available
+		if(request.rssCallback != null)
+			request.rssCallback.OnLoaded(newArticles);
 	}
 
 	/**

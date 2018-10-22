@@ -1,9 +1,9 @@
-package com.alex.godeye.pkrss.parser;
+package com.alex.godeye.util.rsstool.parser;
 
 import android.util.Log;
 
-import com.alex.godeye.pkrss.Article;
-import com.alex.godeye.pkrss.PkRSS;
+import com.alex.godeye.util.rsstool.Article;
+import com.alex.godeye.util.rsstool.PkRSS;
 
 
 import java.util.List;

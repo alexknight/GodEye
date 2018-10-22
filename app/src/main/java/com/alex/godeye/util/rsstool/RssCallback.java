@@ -1,10 +1,8 @@
-package com.alex.godeye.pkrss;
-
-import com.alex.godeye.pkrss.Article;
+package com.alex.godeye.util.rsstool;
 
 import java.util.List;
 
-public interface Callback {
+public interface RssCallback {
 	public void OnPreLoad();
 	public void OnLoaded(List<Article> articleList);
 	public void OnLoadFailed();

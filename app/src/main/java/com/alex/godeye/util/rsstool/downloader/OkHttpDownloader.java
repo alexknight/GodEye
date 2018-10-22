@@ -1,10 +1,10 @@
-package com.alex.godeye.pkrss.downloader;
+package com.alex.godeye.util.rsstool.downloader;
 
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 
-import com.alex.godeye.pkrss.Request;
+import com.alex.godeye.util.rsstool.Request;
 import com.squareup.okhttp.Cache;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Response;

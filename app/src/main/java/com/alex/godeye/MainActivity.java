@@ -11,7 +11,6 @@ import android.os.Bundle;
 
 import com.alex.godeye.fragments.DoubanFragment;
 import com.alex.godeye.fragments.TestFragment;
-import com.alex.godeye.pkrss.PkRSS;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (titles[position]){
                 case "豆瓣电影":
-                    PkRSS.with(getApplicationContext()).load("https://rsshub.app/douban/movie/playing").async();
                     return new DoubanFragment();
                 default:
                     TestFragment testFragment = new TestFragment();

@@ -1,7 +1,7 @@
-package com.alex.godeye.pkrss;
+package com.alex.godeye.util.rsstool;
 
-import com.alex.godeye.pkrss.downloader.Downloader;
-import com.alex.godeye.pkrss.parser.Parser;
+import com.alex.godeye.util.rsstool.downloader.Downloader;
+import com.alex.godeye.util.rsstool.parser.Parser;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -19,9 +19,9 @@ public final class Request {
 	public final int page;
 	public final Downloader downloader;
 	public final Parser parser;
-	public final Callback callback;
+	public final RssCallback rssCallback;
 
-	public Request(String url, String search, boolean individual, boolean skipCache, int page, Downloader downloader, Parser parser, Callback callback) {
+	public Request(String url, String search, boolean individual, boolean skipCache, int page, Downloader downloader, Parser parser, RssCallback rssCallback) {
 		this.tag = String.valueOf(ID_GENERATOR.incrementAndGet());
 		this.url = url;
 		this.search = search;
@@ -30,7 +30,7 @@ public final class Request {
 		this.page = page;
 		this.downloader = downloader;
 		this.parser = parser;
-		this.callback = callback;
+		this.rssCallback = rssCallback;
 	}
 
 	public Request(Builder builder) {
@@ -42,7 +42,7 @@ public final class Request {
 		this.page = builder.page;
 		this.downloader = builder.downloader;
 		this.parser = builder.parser;
-		this.callback = builder.callback;
+		this.rssCallback = builder.rssCallback;
 	}
 
 	public static final class Builder {
@@ -54,7 +54,7 @@ public final class Request {
 		private int page;
 		private Downloader downloader;
 		private Parser parser;
-		private Callback callback;
+		private RssCallback rssCallback;
 
 		public Builder(String url) {
 			this.tag = null;
@@ -65,7 +65,7 @@ public final class Request {
 			this.page = 1;
 			this.downloader = null;
 			this.parser = null;
-			this.callback = null;
+			this.rssCallback = null;
 		}
 
 		public Builder tag(String tag) {
@@ -108,8 +108,8 @@ public final class Request {
 			return this;
 		}
 
-		public Builder callback(Callback callback) {
-			this.callback = callback;
+		public Builder callback(RssCallback rssCallback) {
+			this.rssCallback = rssCallback;
 			return this;
 		}
 

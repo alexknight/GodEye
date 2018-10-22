@@ -1,13 +1,14 @@
-package com.alex.godeye.pkrss;
+package com.alex.godeye.util;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.alex.godeye.pkrss.downloader.DefaultDownloader;
-import com.alex.godeye.pkrss.downloader.Downloader;
-import com.alex.godeye.pkrss.downloader.OkHttpDownloader;
+import com.alex.godeye.util.rsstool.downloader.DefaultDownloader;
+import com.alex.godeye.util.rsstool.downloader.Downloader;
+import com.alex.godeye.util.rsstool.downloader.OkHttpDownloader;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 
 public class Utils {
 	private static final String TAG = "Utils";
@@ -59,5 +60,14 @@ public class Utils {
 
 		Log.d(TAG, "Downloader is " + (okHttpClient ? "OkHttpDownloader" : "DefaultDownloader"));
 		return okHttpClient ? new OkHttpDownloader(context) : new DefaultDownloader(context);
+	}
+
+	public static String encode(String content){
+		try {
+			return new String(content.getBytes("ISO-8859-1"),"UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return "";
 	}
 }

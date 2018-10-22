@@ -1,4 +1,4 @@
-package com.alex.godeye.pkrss;
+package com.alex.godeye.util.rsstool;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.text.TextUtils;
-
-import com.alex.godeye.pkrss.Article;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -80,7 +78,7 @@ class FavoriteDatabase extends SQLiteOpenHelper {
 	 *
 	 * @param article Object to save into database.
 	 */
-	public void add(com.alex.godeye.pkrss.Article article) {
+	public void add(com.alex.godeye.util.rsstool.Article article) {
 		// Get Write Access
 		SQLiteDatabase db = this.getWritableDatabase();
 
@@ -106,7 +104,7 @@ class FavoriteDatabase extends SQLiteOpenHelper {
 	 * @param id ID to search for.
 	 * @return An Article object with the specified ID. May return null if none was found.
 	 */
-	public com.alex.godeye.pkrss.Article get(int id) {
+	public com.alex.godeye.util.rsstool.Article get(int id) {
 		// Get Read Access
 		SQLiteDatabase db = this.getReadableDatabase();
 
@@ -114,13 +112,13 @@ class FavoriteDatabase extends SQLiteOpenHelper {
 		Cursor cursor = db.query(TABLE_ARTICLES,
 		                         new String[] {KEY_TAGS, KEY_SOURCE, KEY_IMAGE, KEY_TITLE, KEY_DESCRIPTION, KEY_CONTENT, KEY_COMMENTS, KEY_AUTHOR,
 			                         KEY_DATE, KEY_ID}, KEY_ID + "=?", new String[] {String.valueOf(id)}, null, null, null, null);
-		com.alex.godeye.pkrss.Article article = null;
+		com.alex.godeye.util.rsstool.Article article = null;
 
 		try {
 			// Attempt to retrieve article
 			if (cursor != null) {
 				cursor.moveToFirst();
-				article = new com.alex.godeye.pkrss.Article(null, Arrays.asList(cursor.getString(0).split("_PCX_")), Uri.parse(cursor.getString(1)),
+				article = new com.alex.godeye.util.rsstool.Article(null, Arrays.asList(cursor.getString(0).split("_PCX_")), Uri.parse(cursor.getString(1)),
 				                      Uri.parse(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5),
 				                      cursor.getString(6), cursor.getString(7), cursor.getLong(8), cursor.getInt(9));
 			}
@@ -137,9 +135,9 @@ class FavoriteDatabase extends SQLiteOpenHelper {
 	/**
 	 * @return A backwards Article ArrayList ordered from last added to end.
 	 */
-	public List<com.alex.godeye.pkrss.Article> getAll() {
+	public List<com.alex.godeye.util.rsstool.Article> getAll() {
 		// Init List & Build Query
-		List<com.alex.godeye.pkrss.Article> articleList = new ArrayList<com.alex.godeye.pkrss.Article>();
+		List<com.alex.godeye.util.rsstool.Article> articleList = new ArrayList<com.alex.godeye.util.rsstool.Article>();
 		String selectQuery = "SELECT  * FROM " + TABLE_ARTICLES;
 
 		// Get Write Access & Execute Query
@@ -149,7 +147,7 @@ class FavoriteDatabase extends SQLiteOpenHelper {
 		// Read the query backwards
 		if (cursor.moveToLast()) {
 			do {
-				articleList.add(new com.alex.godeye.pkrss.Article(null, Arrays.asList(cursor.getString(0).split("_PCX_")), Uri.parse(cursor.getString(1)),
+				articleList.add(new com.alex.godeye.util.rsstool.Article(null, Arrays.asList(cursor.getString(0).split("_PCX_")), Uri.parse(cursor.getString(1)),
 				                            Uri.parse(cursor.getString(2)), cursor.getString(3), cursor.getString(4), cursor.getString(5),
 				                            cursor.getString(6), cursor.getString(7), cursor.getLong(8), cursor.getInt(9)));
 			} while (cursor.moveToPrevious());

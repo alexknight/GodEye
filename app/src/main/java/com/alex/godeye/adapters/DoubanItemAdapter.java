@@ -1,18 +1,15 @@
 package com.alex.godeye.adapters;
 
 import android.content.Context;
-import android.net.Uri;
-import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.alex.godeye.R;
-import com.alex.godeye.entites.News;
+import com.alex.godeye.beans.Douban;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
@@ -29,32 +26,13 @@ import java.util.List;
  */
 
 
-public class DoubanItemAdapter extends BaseAdapter {
+public class DoubanItemAdapter extends MyItemAdapter {
 
-    private LayoutInflater mInflater;
-    private List<News> list;
-    private Context mContext;
 
-    public DoubanItemAdapter(Context context, List<News> list){
-        this.mContext = context;
-        mInflater = LayoutInflater.from(context);
-        this.list = list;
+    public DoubanItemAdapter(Context context, List<Douban.SubjectsBean> list){
+        super(context, list);
     }
 
-    @Override
-    public int getCount() {
-        return this.list.size();
-    }
-
-    @Override
-    public Object getItem(int i) {
-        return list.get(i);
-    }
-
-    @Override
-    public long getItemId(int i) {
-        return i;
-    }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
@@ -70,12 +48,13 @@ public class DoubanItemAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        holder.title.setText(list.get(i).getTitle());
-        holder.score.setText(list.get(i).getScore());
-        holder.style.setText(list.get(i).getStyle());
+        Douban.SubjectsBean dsb = ((Douban.SubjectsBean) this.list.get(i));
+        holder.title.setText(String.format("电影：%s", ((Douban.SubjectsBean) this.list.get(i)).getTitle()));
+        holder.score.setText(String.format("评分：%s", String.valueOf(dsb.getRating().getAverage())));
+        holder.style.setText(String.format("类型：%s", dsb.getGenres().toString().substring(1, dsb.getGenres().toString().length()-1)));
         try {
             Glide.with(mContext)
-                    .load(list.get(i).getImg()) //加载地址
+                    .load(dsb.getImages().getSmall()) //加载地址
                     .dontAnimate()
                     .listener(new RequestListener<String, GlideDrawable>() {
                                   @Override

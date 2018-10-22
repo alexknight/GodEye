@@ -1,10 +1,10 @@
-package com.alex.godeye.pkrss.downloader;
+package com.alex.godeye.util.rsstool.downloader;
 
 import android.util.Log;
 
 
-import com.alex.godeye.pkrss.PkRSS;
-import com.alex.godeye.pkrss.Request;
+import com.alex.godeye.util.rsstool.PkRSS;
+import com.alex.godeye.util.rsstool.Request;
 
 import java.io.IOException;
 
