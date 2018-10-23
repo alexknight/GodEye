@@ -1,19 +1,26 @@
 package com.alex.godeye.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.alex.godeye.R;
+import com.alex.godeye.activities.WebActivity;
 import com.alex.godeye.adapters.DoubanItemAdapter;
 import com.alex.godeye.beans.Douban;
 import com.alex.godeye.network.HttpUtils;
@@ -33,6 +40,7 @@ public class DoubanFragment extends Fragment {
 
     private static final int UPDATE = 1;
     private ListView listView;
+    private WebView webView;
     private DoubanItemAdapter mAdapter;
     private Douban douban;
 
@@ -50,21 +58,22 @@ public class DoubanFragment extends Fragment {
                 default:
                     break;
             }
-
         }
 
     };
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.card_fragment, container, false);
         listView = view.findViewById(R.id.card_listview);
         initData();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(),  douban.getSubjects().get(i).getAlt(), Toast.LENGTH_SHORT).show();
+                Intent mIntent = new Intent(getActivity(), WebActivity.class);
+                mIntent.putExtra("url", douban.getSubjects().get(i).getAlt());
+                startActivity(mIntent);
             }
         });
         return view;
@@ -82,7 +91,6 @@ public class DoubanFragment extends Fragment {
                 mHandler.sendMessage(msg);
             }
         });
-
     }
 
 }

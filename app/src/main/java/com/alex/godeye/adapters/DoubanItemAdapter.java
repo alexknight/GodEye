@@ -69,9 +69,9 @@ public class DoubanItemAdapter extends MyItemAdapter {
                                   }
 
                               })
-                    .placeholder(R.drawable.ic_launcher_foreground)//加载未完成时显示占位图
+                    .placeholder(R.drawable.layout_divider_vertical)//加载未完成时显示占位图
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(holder.imageView);//显示的位置
+                    .into(holder.imageView);
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 
 import com.alex.godeye.fragments.DoubanFragment;
-import com.alex.godeye.fragments.TestFragment;
+import com.alex.godeye.fragments.SimpleFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 case "豆瓣电影":
                     return new DoubanFragment();
                 default:
-                    TestFragment testFragment = new TestFragment();
+                    SimpleFragment testFragment = new SimpleFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("title", "测试一下");
                     testFragment.setArguments(bundle);

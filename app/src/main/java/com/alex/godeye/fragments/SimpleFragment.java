@@ -28,17 +28,17 @@ import com.alex.godeye.R;
 
 
 
-public class TestFragment extends Fragment {
+public class SimpleFragment extends Fragment {
     private WebView webView;
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.test_fragment, container, false);
+        View view = inflater.inflate(R.layout.web_fragment, container, false);
         webView = view.findViewById(R.id.wv);
         initView();
-        webView.loadUrl("http://www.baidu.com");
+        webView.loadUrl("http://www.coderlife.site/");
         webView.setWebViewClient(new WebViewClient());
 
         webView.setWebChromeClient(new WebChromeClient(){
