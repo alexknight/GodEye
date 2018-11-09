@@ -1,4 +1,4 @@
-package com.alex.godeye.beans;
+package com.alex.godeye.models;
 
 /**
  * Project: GodEye

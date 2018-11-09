@@ -1,15 +1,14 @@
-package com.alex.godeye.adapters;
+package com.alex.godeye.adapters.douban;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alex.godeye.R;
-import com.alex.godeye.beans.Douban;
+import com.alex.godeye.adapters.MyItemAdapter;
+import com.alex.godeye.models.Douban;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;

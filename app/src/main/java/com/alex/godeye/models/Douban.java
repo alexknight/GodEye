@@ -1,4 +1,4 @@
-package com.alex.godeye.beans;
+package com.alex.godeye.models;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 
-public class Douban extends AbstractBean{
+public class Douban extends AbstractBean {
 
     private String title;
     private List<SubjectsBean> subjects;

@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.alex.godeye.beans.AbstractBean;
+import com.alex.godeye.models.AbstractBean;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public abstract class MyItemAdapter<T extends AbstractBean> extends BaseAdapter 
     protected List<T> list;
     protected Context mContext;
 
-    MyItemAdapter(Context context, List<T> list){
+    public MyItemAdapter(Context context, List<T> list){
         this.mContext = context;
         mInflater = LayoutInflater.from(context);
         this.list = list;

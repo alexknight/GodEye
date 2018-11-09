@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GodEye</string>
     <string name="douban_url">https://rsshub.app/douban/movie/playing</string>
+    <string name="douban_base_url">http://api.douban.com/v2/</string>
 </resources>

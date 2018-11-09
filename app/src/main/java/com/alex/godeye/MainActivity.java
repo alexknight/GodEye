@@ -1,16 +1,15 @@
 package com.alex.godeye;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
-
-import com.alex.godeye.fragments.DoubanFragment;
-import com.alex.godeye.fragments.SimpleFragment;
+import com.alex.godeye.ui.SimpleFragment;
+import com.alex.godeye.ui.douban.fragments.DoubanFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,10 +32,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
         tablayout.setupWithViewPager(viewPager);
 
-        // 增加分割线
-        // LinearLayout linearLayout = (LinearLayout) tablayout.getChildAt(0);
-        // linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
-        // linearLayout.setDividerDrawable(ContextCompat.getDrawable(this, R.drawable.layout_divider_vertical));
     }
 
 
