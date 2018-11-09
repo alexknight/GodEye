@@ -1,13 +1,9 @@
 package com.alex.godeye.presenter.douban;
 
-import android.content.Context;
-import android.content.Intent;
-
-import com.alex.godeye.interfaces.IView;
-import com.alex.godeye.models.Douban;
+import com.alex.godeye.ui.douban.view.IDoubanView;
+import com.alex.godeye.presenter.Presenter;
 import com.alex.godeye.models.DataManager;
-import com.alex.godeye.interfaces.Presenter;
-import com.alex.godeye.interfaces.IDoubanView;
+import com.alex.godeye.models.Douban;
 
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -18,25 +14,16 @@ public class DoubanPresenter implements Presenter {
 
     private DataManager dataManager;
     private CompositeSubscription mCompositeSubscription;
-    private Context mContext;
     private IDoubanView mIDoubanView;
     private int index;
     public Douban mDouban;
 
-    public DoubanPresenter (Context mContext){
-        this.mContext = mContext;
-    }
-
-    @Override
-    public void onCreate() {
-        dataManager = new DataManager(mContext);
+    public DoubanPresenter (IDoubanView view){
+        this.mIDoubanView = view;
+        dataManager = new DataManager();
         mCompositeSubscription = new CompositeSubscription();
     }
 
-    @Override
-    public void onStart() {
-
-    }
 
     @Override
     public void onStop() {
@@ -45,30 +32,8 @@ public class DoubanPresenter implements Presenter {
         }
     }
 
-    @Override
-    public void pause() {
 
-    }
-
-    @Override
-    public void attachView(IView iView) {
-        mIDoubanView = (IDoubanView) iView;
-    }
-
-    @Override
-    public void attachView(IView iView, int i) {
-        mIDoubanView = (IDoubanView) iView;
-        index = i;
-    }
-
-
-
-    @Override
-    public void attachIncomingIntent(Intent intent) {
-
-    }
-
-    public void getInTheaters(){
+    public void updateInTheaters(){
         mCompositeSubscription.add(dataManager.getDoubanInfo()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -76,7 +41,7 @@ public class DoubanPresenter implements Presenter {
                     @Override
                     public void onCompleted() {
                         if (mDouban != null){
-                            mIDoubanView.onSuccess(mDouban);
+                            mIDoubanView.updateInTheaters(mDouban);
                         }
                     }
 
@@ -101,7 +66,7 @@ public class DoubanPresenter implements Presenter {
                     @Override
                     public void onCompleted() {
                         if (mDouban != null){
-                            mIDoubanView.onSuccess(mDouban, index);
+                            mIDoubanView.enterDetail(mDouban, index);
                         }
                     }
 
